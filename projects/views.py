@@ -1,3 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+context = {
+    'mobile': False
+}
+
+
+def projects(request):
+    pass
+
