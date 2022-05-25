@@ -11,3 +11,7 @@ def index(request):
 
 def resume(request):
     return render(request, 'resume.html', context=context)
+
+
+def about(request):
+    return render(request, 'about.html', context=context)
