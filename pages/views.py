@@ -18,4 +18,4 @@ def about(request):
 
 
 def projects(request):
-    pass
+    return render(request, 'projects.html', context=context)
