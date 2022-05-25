@@ -15,3 +15,7 @@ def resume(request):
 
 def about(request):
     return render(request, 'about.html', context=context)
+
+
+def projects(request):
+    pass
