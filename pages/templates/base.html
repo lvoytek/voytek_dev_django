@@ -1,0 +1,81 @@
+{% include "mobile-nav.html" %}
+{% include "desktop-nav.html" %}
+{% include "sociallinks.html" %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block title %}<title>Default</title>{% endblock %}
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Author: Lena Voytek, Category: Personal Website">
+
+        <!-- Import jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+        <link rel="icon" href="images/logo.png">
+
+        <link rel="stylesheet" id="style-light" href="/style/main.css">
+        <link rel="stylesheet" id="style-dark" href="/style/main-dark.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+        <script src="/scripts/main.js"></script>
+	</head>
+	<body>
+        {% if mobile %}
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="/images/logo.png" alt="LV logo"
+                            style="height: 85%;"></a>
+                    <ul class="right ">
+                        <li><a href="#" data-target="slide-out" style="display: block;" class="sidenav-trigger"><i
+                                    class="material-icons">menu</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <ul id="slide-out" class="sidenav">
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a class="subheader">Navigation</a></li>
+                {% block mobilepages %}{% endblock %}
+            </ul>
+        {% else %}
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="/images/logo.png" alt="LV logo"
+                            style="height: 85%;"></a>
+                    <ul class="right ">
+                        {% block desktoppages %}{% endblock %}
+                        <li><a href="#" data-target="slide-out" style="display: block;" class="sidenav-trigger"><i
+                                    class="material-icons">settings</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <ul id="slide-out" class="sidenav">
+            </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+
+        {% block social %}{% endblock %}
+	</body>
+	<script>
+	//Initialize sidenav
+	    $('.sidenav').sidenav({
+		    'edge': 'right'
+	    });
+
+	    if(window.localStorage.getItem('authToken'))
+		    $(".unregistered-button").hide();
+	    else
+		    $(".registered-button").hide();
+    </script>
+</html>
