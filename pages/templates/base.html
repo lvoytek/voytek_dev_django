@@ -1,6 +1,6 @@
-{% include "mobile-nav.html" %}
-{% include "desktop-nav.html" %}
-{% include "sociallinks.html" %}
+{% load static %}
+{% load compress %}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,24 +13,30 @@
         <!-- Import jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-        <link rel="icon" href="images/logo.png">
+        <link rel="icon" href="{% static 'images/logo.png' %}">
 
-        <link rel="stylesheet" id="style-light" href="/style/main.css">
-        <link rel="stylesheet" id="style-dark" href="/style/main-dark.css">
+        {% compress css %}
+            <link type="text/x-scss" id="style-light" href="{% static 'main.scss' %}" rel="stylesheet" media="screen">
+        {% endcompress %}
+
+        {% compress css %}
+            <link type="text/x-scss" id="style-dark" href="{% static 'main-dark.scss' %}" rel="stylesheet" media="screen">
+        {% endcompress %}
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="{% static 'materialize/dist/js/materialize.min.js' %}"></script>
         <script src="https://smtpjs.com/v3/smtp.js"></script>
 
-        <script src="/scripts/main.js"></script>
+        <script src="{% static 'scripts/main.js' %}"></script>
 	</head>
 	<body>
         {% if mobile %}
             <nav>
                 <div class="nav-wrapper">
-                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="/images/logo.png" alt="LV logo"
+                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="{% static 'images/logo.png' %}" alt="LV logo"
                             style="height: 85%;"></a>
                     <ul class="right ">
                         <li><a href="#" data-target="slide-out" style="display: block;" class="sidenav-trigger"><i
@@ -49,7 +55,7 @@
         {% else %}
             <nav>
                 <div class="nav-wrapper">
-                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="/images/logo.png" alt="LV logo"
+                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="{% static 'images/logo.png' %}" alt="LV logo"
                             style="height: 85%;"></a>
                     <ul class="right ">
                         {% block desktoppages %}{% endblock %}
