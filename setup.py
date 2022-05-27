@@ -10,6 +10,7 @@ setup(
     author_email='lena@voytek.dev',
     description='voytek.dev created with Django',
     install_requires=[
-        'user_agents'
+        'user_agents',
+        'mysqlclient'
     ],
 )
