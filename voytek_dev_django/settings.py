@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-d%l(428$)@t1ngy0$n5hqjo#(*(tx(!*gh!oqn%z@l0@l=&xq-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -78,8 +78,10 @@ WSGI_APPLICATION = 'voytek_dev_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/etc/mysql/my.cnf',
+        },
     }
 }
 
