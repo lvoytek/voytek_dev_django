@@ -16,7 +16,10 @@ def get_context(request):
     return {"mobile": mobile}
 
 
-def get_projects():
+def get_projects(request):
+    if request.GET.get("search", None) is not None:
+        return {"projects": Project.objects.filter(tags__contains=request.GET.get("search"))}
+
     return {"projects": Project.objects.all()}
 
 
@@ -33,5 +36,5 @@ def about(request):
 
 
 def projects(request):
-    context = get_context(request) | get_projects()
+    context = get_context(request) | get_projects(request)
     return render(request, 'projects.html', context=context)
