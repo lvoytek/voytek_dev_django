@@ -5,9 +5,41 @@
             <div class="container">
                 <h3 class="header text_b center">Projects</h3>
 
-                <div class="row">
+                {% if projects %}
+                    <div class="row">
+                        {% for project in projects %}
+                            <div class="col s12 m12 l4">
+                                <div class="card hoverable">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator" src="{{ project.image.url }}" alt="{{ project.title }}">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title activator">
+                                            {{ project.title }}<i class="mdi-navigation-more-vert right"></i>
+                                        </span>
+                                        <p><a href="{{ project.link }}">Project link</a></p>
+                                    </div>
+                                    <div class="card-reveal">
+                                        <span class="card-title">
+                                            {{ project.title }}<i class="mdi-navigation-close right"></i>
+                                        </span>
+                                        <p>
+                                            {{ project.overview }}
+                                        </p>
+                                        {% if project.tags %}
+                                        <p>Tags:
+                                            {% for tag in project.tags %}
+                                                <a href="/projects?search={{ tag }}">#{{ tag }}</a>
+                                            {% endfor %}
+                                        </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
-                </div>
             </div>
         </div>
 {% endblock %}
