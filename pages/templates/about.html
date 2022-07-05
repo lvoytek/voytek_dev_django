@@ -20,4 +20,20 @@
 				</div>
 			</div>
 		</div>
+        {% if skills %}
+        <div class="container">
+            <div class="row">
+                <h1 class="center">
+                    My Skills
+                </h1>
+            </div>
+            <div class="row center">
+                {% for skill in skills %}
+                    <div class="center col s6 m6 l3" style="height: 25vh;">
+                        <a href="/pages/projects?search={{ skill.tag }}"><img style="max-height: 80%; width: auto;" alt="{{ skill.title }}" src="{{ skill.image.url }}"></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
 {% endblock %}

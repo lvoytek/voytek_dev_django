@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from user_agents import parse
-from .models import Project
+from .models import Project, Skill
 
 
 def get_context(request):
@@ -23,6 +23,10 @@ def get_projects(request):
     return {"projects": Project.objects.all()}
 
 
+def get_skills(request):
+    return {"skills": Skill.objects.all()}
+
+
 def index(request):
     return render(request, 'index.html', context=get_context(request))
 
@@ -32,7 +36,8 @@ def resume(request):
 
 
 def about(request):
-    return render(request, 'about.html', context=get_context(request))
+    context = get_context(request) | get_skills(request)
+    return render(request, 'about.html', context=context)
 
 
 def projects(request):
