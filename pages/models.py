@@ -10,3 +10,20 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SkillCategory(models.Model):
+    title = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.title
+
+
+class Skill(models.Model):
+    title = models.CharField(max_length=120)
+    tag = models.CharField(max_length=120)
+    category = SkillCategory()
+    image = models.ImageField(upload_to="skill-images")
+
+    def __str__(self):
+        return self.title
