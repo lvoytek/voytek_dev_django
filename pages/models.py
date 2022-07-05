@@ -22,7 +22,7 @@ class SkillCategory(models.Model):
 class Skill(models.Model):
     title = models.CharField(max_length=120)
     tag = models.CharField(max_length=120)
-    category = SkillCategory()
+    category = models.ForeignKey('SkillCategory', on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to="skill-images")
 
     def __str__(self):
