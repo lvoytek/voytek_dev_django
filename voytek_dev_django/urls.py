@@ -27,3 +27,4 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static('/favicon.ico', path=settings.STATIC_ROOT + 'images/logo.png')
