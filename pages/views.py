@@ -18,13 +18,13 @@ def get_context(request):
 
 def get_projects(request):
     if request.GET.get("search", None) is not None:
-        return {"projects": Project.objects.filter(tags__contains=request.GET.get("search"))}
+        return {"projects": sorted(list(Project.objects.filter(tags__contains=request.GET.get("search"))))}
 
-    return {"projects": Project.objects.all()}
+    return {"projects": sorted(list(Project.objects.all()))}
 
 
 def get_skills(request):
-    return {"skills": Skill.objects.all()}
+    return {"skills": sorted(list(Skill.objects.all()))}
 
 
 def index(request):
