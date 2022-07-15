@@ -30,12 +30,12 @@
 
 function setColorMode(dark) {
   if (dark) {
-    $("#style-dark").attr('rel', "stylesheet");
-    $("#style-light").attr('rel', "stylesheet alternate");
+    $('link[href*="main-dark."]').attr('rel', "stylesheet");
+    $('link[href*="main."]').attr('rel', "stylesheet alternate");
   }
   else {
-    $("#style-light").attr('rel', "stylesheet");
-    $("#style-dark").attr('rel', "stylesheet alternate");
+    $('link[href*="main."]').attr('rel', "stylesheet");
+    $('link[href*="main-dark."]').attr('rel', "stylesheet alternate");
   }
 }
 

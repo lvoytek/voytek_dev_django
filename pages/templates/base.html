@@ -16,11 +16,11 @@
         <link rel="icon" href="{% static 'images/logo.png' %}">
 
         {% compress css %}
-            <link type="text/x-scss" id="style-light" href="{% static 'main.scss' %}" rel="stylesheet" media="screen">
+            <link type="text/x-scss" href="{% static 'main.scss' %}" rel="stylesheet" media="screen">
         {% endcompress %}
 
         {% compress css %}
-            <link type="text/x-scss" id="style-dark" href="{% static 'main-dark.scss' %}" rel="stylesheet" media="screen">
+            <link type="text/x-scss" href="{% static 'main-dark.scss' %}" rel="stylesheet" media="screen">
         {% endcompress %}
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -51,6 +51,7 @@
                 </li>
                 <li><a class="subheader">Navigation</a></li>
                 {% block mobilepages %}{% endblock %}
+                {% block mobilesettings %}{% endblock %}
             </ul>
         {% else %}
             <nav>
@@ -66,6 +67,7 @@
             </nav>
 
             <ul id="slide-out" class="sidenav">
+                {% block desktopsettings %}{% endblock %}
             </ul>
         {% endif %}
 
