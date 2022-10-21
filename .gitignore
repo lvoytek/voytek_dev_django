@@ -3,3 +3,4 @@
 static/CACHE/
 media/
 pages/migrations
+db.sqlite3
