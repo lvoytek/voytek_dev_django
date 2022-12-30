@@ -10,7 +10,9 @@ setup(
     author_email='lena@voytek.dev',
     description='voytek.dev created with Django',
     install_requires=[
-        'user_agents',
-        'mysqlclient'
+        'django',
+        'django-compressor',
+        'django-libsass',
+        'user_agents'
     ],
 )
