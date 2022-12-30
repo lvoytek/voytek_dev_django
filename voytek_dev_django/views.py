@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from user_agents import parse
-from .models import Project, Skill, SkillCategory
+from projects.models import Project, Skill, SkillCategory
 
 
 def get_context(request):
