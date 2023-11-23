@@ -47,3 +47,7 @@ def about(request):
 def projects(request):
     context = get_context(request) | get_projects(request)
     return render(request, 'projects.html', context=context)
+
+
+def bread(request):
+    return render(request, 'bread.html', context=get_context(request))
