@@ -18,6 +18,10 @@ body {
     color: white;
 }
 
+.input-field [type=number] {
+    color: white;
+}
+
 #landing {
 	background-image: url('/static/images/landing-dark.png');
 }

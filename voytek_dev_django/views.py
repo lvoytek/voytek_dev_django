@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from user_agents import parse
 from projects.models import Project, Skill, SkillCategory
+from bread.bread import Bread
 
 
 def get_context(request):
@@ -31,6 +32,20 @@ def get_skill_categories(request):
     return {"categories": sorted(list(SkillCategory.objects.all()))}
 
 
+def get_bread_values(request):
+    loaves = 2
+    rolls = 0
+
+    if request.GET.get("loaves") is not None:
+        loaves = int(request.GET.get("loaves"))
+
+    if request.GET.get("rolls") is not None:
+        rolls = int(request.GET.get("rolls"))
+
+    bread_values = Bread(loaves, rolls)
+    return {"bread": bread_values.get_display_values()}
+
+
 def index(request):
     return render(request, 'index.html', context=get_context(request))
 
@@ -50,4 +65,5 @@ def projects(request):
 
 
 def bread(request):
-    return render(request, 'bread.html', context=get_context(request))
+    context = get_context(request) | get_bread_values(request)
+    return render(request, 'bread.html', context=context)
