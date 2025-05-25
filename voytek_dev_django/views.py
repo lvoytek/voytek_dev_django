@@ -36,11 +36,14 @@ def get_bread_values(request):
     loaves = 2
     rolls = 0
 
-    if request.GET.get("loaves") is not None:
-        loaves = int(request.GET.get("loaves"))
+    try:
+        if request.GET.get("loaves") is not None:
+            loaves = int(request.GET.get("loaves"))
 
-    if request.GET.get("rolls") is not None:
-        rolls = int(request.GET.get("rolls"))
+        if request.GET.get("rolls") is not None:
+            rolls = int(request.GET.get("rolls"))
+    except ValueError:
+        pass
 
     bread_values = Bread(loaves, rolls)
     return {"bread": bread_values.get_display_values()}
