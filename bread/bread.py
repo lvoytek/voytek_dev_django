@@ -18,6 +18,8 @@ class Bread():
 
         salt = int(self._loaves * 6 + self._rolls * 1.5)
 
+        portion_split = self._loaves + int(self._rolls/4)
+
         return {
             "loaves": self._loaves,
             "rolls": self._rolls,
@@ -30,4 +32,5 @@ class Bread():
             "total_water": total_water,
             "yeast": yeast,
             "salt": salt,
+            "portion_split": portion_split,
         }
