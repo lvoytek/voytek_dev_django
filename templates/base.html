@@ -10,9 +10,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Author: Lena Voytek, Category: Personal Website">
 
-        <!-- Import jQuery -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
         <link rel="icon" href="{% static 'images/logo.png' %}">
 
         <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-4.24.1.min.css" />
@@ -68,15 +65,4 @@
 
         {% block social %}{% endblock %}
 	</body>
-	<script>
-	//Initialize sidenav
-	    $('.sidenav').sidenav({
-		    'edge': 'right'
-	    });
-
-	    if(window.localStorage.getItem('authToken'))
-		    $(".unregistered-button").hide();
-	    else
-		    $(".registered-button").hide();
-    </script>
 </html>
