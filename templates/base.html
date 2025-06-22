@@ -23,43 +23,41 @@
         <script src="{% static 'scripts/main.js' %}"></script>
 	</head>
 	<body>
-        {% if mobile %}
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="{% static 'images/logo.png' %}" alt="LV logo"
-                            style="height: 85%;"></a>
-                    <ul class="right ">
-                        <li><a href="#" data-target="slide-out" style="display: block;" class="sidenav-trigger"><i
-                                    class="material-icons">menu</i></a></li>
-                    </ul>
-                </div>
-            </nav>
-
-            <ul id="slide-out" class="sidenav">
-                <li>
-                    <div class="divider"></div>
+        <header id="navigation" class="p-navigation is-dark">
+            <div class="p-navigation__row--25-75">
+                <div class="p-navigation__banner">
+                    <div class="p-navigation__tagged-logo">
+                        <a class="p-navigation__link" href="/">
+                            <div class="p-navigation__logo-tag">
+                                <img class="p-navigation__logo-icon" src="{% static 'images/logo.png' %}" alt="LV">
+                            </div>
+                            <span class="p-navigation__logo-title">Lena Voytek</span>
+                        </a>
+                    </div>
+                <ul class="p-navigation__items">
+                <li class="p-navigation__item">
+                    <button class="js-menu-button p-navigation__link">Menu</button>
                 </li>
-                <li><a class="subheader">Navigation</a></li>
-                {% block mobilepages %}{% endblock %}
-                {% block mobilesettings %}{% endblock %}
-            </ul>
-        {% else %}
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="{% static 'images/logo.png' %}" alt="LV logo"
-                            style="height: 85%;"></a>
-                    <ul class="right ">
-                        {% block desktoppages %}{% endblock %}
-                        <li><a href="#" data-target="slide-out" style="display: block;" class="sidenav-trigger"><i
-                                    class="material-icons">settings</i></a></li>
-                    </ul>
+                </ul>
                 </div>
-            </nav>
-
-            <ul id="slide-out" class="sidenav">
-                {% block desktopsettings %}{% endblock %}
-            </ul>
-        {% endif %}
+                <nav class="p-navigation__nav" aria-label="Lena Voytek">
+                    <ul class="p-navigation__items">
+                        <li class="p-navigation__item is-selected">
+                            <a class="p-navigation__link" href="/">Home</a>
+                        </li>
+                        <li class="p-navigation__item">
+                            <a class="p-navigation__link" href="/projects">Projects</a>
+                        </li>
+                        <li class="p-navigation__item">
+                            <a class="p-navigation__link" href="/resume">Resume</a>
+                        </li>
+                        <li class="p-navigation__item">
+                            <a class="p-navigation__link" href="/about">About</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
         {% block content %}{% endblock %}
 
