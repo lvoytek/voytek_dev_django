@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.utils import NotSupportedError
 from user_agents import parse
 from projects.models import Project, Skill, SkillCategory
 from bread.bread import Bread
@@ -20,10 +21,14 @@ def get_context(request):
 
 
 def get_projects(request):
-    if request.GET.get("search", None) is not None:
-        return {"projects": sorted(list(Project.objects.filter(tags__contains=request.GET.get("search"))))}
+    search = request.GET.get("search", None)
+    if search is not None:
+        try:
+            return {"projects": sorted(list(Project.objects.filter(tags__contains=request.GET.get("search")))), "search": search}
+        except NotSupportedError:
+            return {"projects": sorted(list(Project.objects.all())), "search": search}
 
-    return {"projects": sorted(list(Project.objects.all()))}
+    return {"projects": sorted(list(Project.objects.all())), "search":"" }
 
 
 def get_skills(request):
