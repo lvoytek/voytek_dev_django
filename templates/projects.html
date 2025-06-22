@@ -36,9 +36,10 @@
                                 {% if project.tags %}
                                     <hr class="u-no-margin--bottom">
                                     <div class="p-card__inner">
-                                        Tags:
                                         {% for tag in project.tags %}
-                                            <a href="/projects?search={{ tag }}">#{{ tag }}</a>
+                                            <button class="p-chip" onclick="location.href='/projects?search={{ tag }}'">
+                                                <span class="p-chip__value">{{ tag }}</span>
+                                            </button>
                                         {% endfor %}
                                     </div>
                                 {% endif %}
