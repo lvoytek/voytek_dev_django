@@ -2,21 +2,23 @@
 {% load static %}
 {% block title %}<title>About</title>{% endblock %}
 {% block content %}
-		<div class="container">
-			<h1 class="header center">About Me</h1>
-            <div class="row--50-50">
-                <div class="col">
-                    <img class="p-image--shadowed" alt="Lena Voytek" src="{% static 'images/lena.jpg' %}">
-                </div>
-                <div class="col">
-					<p>
-						Hi, I'm Lena Voytek. I am a software engineer specializing in operating systems, embedded software, and full-stack development. I currently work as a developer for Canonical on <a href="https://ubuntu.com/download/server">Ubuntu Server</a>.
-						While you're here, feel free to take a look at some of my open source projects on the <a href="/projects">Projects page</a>. You can also find my Resume <a href="/pages/resume">here</a>. For a visual representation of my skills,
-						you can scroll further down this page.
-					</p>
-                </div>
-            </div>
-		</div>
+    <div class="p-strip--dark">
+        <div class="row--25-75">
+            <h1 class="p-heading--2">About Me</h1>
+        </div>
+    </div>
+    <div class="row--50-50">
+        <div class="col">
+            <img class="p-image--shadowed" alt="Lena Voytek" src="{% static 'images/lena.jpg' %}">
+        </div>
+        <div class="col">
+            <p>
+                Hi, I'm Lena Voytek. I am a software engineer specializing in operating systems, embedded software, and full-stack development. I currently work as a developer for Canonical on <a href="https://ubuntu.com/download/server">Ubuntu Server</a>.
+                While you're here, feel free to take a look at some of my open source projects on the <a href="/projects">Projects page</a>. You can also find my Resume <a href="/pages/resume">here</a>. For a visual representation of my skills,
+                you can scroll further down this page.
+            </p>
+        </div>
+    </div>
         {% if skills and categories %}
         <div class="container">
             <div class="row">
