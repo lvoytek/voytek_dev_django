@@ -43,16 +43,16 @@
                     </div>
                     <nav class="p-navigation__nav" aria-label="Lena Voytek">
                         <ul class="p-navigation__items">
-                            <li class="p-navigation__item is-selected">
+                            <li class="p-navigation__item {% if page == "/" %} is-selected {% endif %}">
                                 <a class="p-navigation__link" href="/">Home</a>
                             </li>
-                            <li class="p-navigation__item">
+                            <li class="p-navigation__item {% if page == "/projects" %} is-selected {% endif %}">
                                 <a class="p-navigation__link" href="/projects">Projects</a>
                             </li>
-                            <li class="p-navigation__item">
+                            <li class="p-navigation__item {% if page == "/resume" %} is-selected {% endif %}">
                                 <a class="p-navigation__link" href="/resume">Resume</a>
                             </li>
-                            <li class="p-navigation__item">
+                            <li class="p-navigation__item {% if page == "/about" %} is-selected {% endif %}">
                                 <a class="p-navigation__link" href="/about">About</a>
                             </li>
                         </ul>

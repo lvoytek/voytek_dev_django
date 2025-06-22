@@ -14,7 +14,9 @@ def get_context(request):
 
         mobile = parse(user_agent).is_mobile
 
-    return {"mobile": mobile}
+    page = request.path
+
+    return {"mobile": mobile, "page": page}
 
 
 def get_projects(request):
