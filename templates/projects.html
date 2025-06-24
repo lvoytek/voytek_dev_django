@@ -19,7 +19,60 @@
             </div>
         </div>
     </div>
-
+    {% if projects %}
+        <div class="p-strip">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="p-filter-panel ">
+                                <div class="p-filter-panel__header">
+                                </div>
+                                <div class="p-filter-panel__inner">
+                                    <h2 class="p-muted-heading">Categories</h2>
+                                    <label class="p-checkbox">
+                                        <input aria-labelledby=":rf:" class="p-checkbox__input" type="checkbox">
+                                        <span class="p-checkbox__label" id=":rf:">Embedded</span>
+                                    </label>
+                                    <label class="p-checkbox">
+                                        <input aria-labelledby=":rg:" class="p-checkbox__input" type="checkbox">
+                                        <span class="p-checkbox__label" id=":rg:">Packaging</span>
+                                    </label>
+                                    <label class="p-checkbox">
+                                        <input aria-labelledby=":rh:" class="p-checkbox__input" type="checkbox">
+                                        <span class="p-checkbox__label" id=":rh:">Social</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="row">
+                                {% for project in projects %}
+                                    <div class="col-3" style="margin-bottom: 1.5rem;">
+                                        <div class="u-no-margin--bottom p-card" role="group" style="height: 100%; border-top: 3px solid #76658b;">
+                                            <div class="p-card__content">
+                                                <div class="p-media-object u-no-margin--bottom" style="height: 100%;">
+                                                    <img src="{{ project.image.url }}" width="48" height="48" alt="" class="p-media-object__image" data-testid="package-icon">
+                                                    <div class="sc-package-card p-media-object__details" style="width: 100%;">
+                                                        <div class="sc-package-card" style="width: 100%; height: 100%;">
+                                                            <div class="sc-package-card__body">
+                                                                <h2 class="sc-package-card__heading p-heading--5 u-no-margin--bottom"><a class="sc-package-card__heading-link" href="{{ project.link }}">{{ project.title }}</a></h2>
+                                                                <p class="u-line-clamp u-no-margin--bottom">{{ project.overview }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
         <div class="row">
             {% if projects %}
                 <div class="l-fluid-breakout__main">
