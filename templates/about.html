@@ -21,26 +21,27 @@
             </div>
         </div>
     </div>
-        {% if skills and categories %}
-            <div class="row">
-                <h1 class="center">
-                    My Skills
-                </h1>
+    {% if skills and categories %}
+        <div class="p-strip">
+            <div class="row--25-75">
+                <h1 class="p-heading--2">Skills</h1>
             </div>
-
-            {% for category in categories %}
-                <div class="span-wrapper">
-                    <span class="slice">{{ category.title }}</span>
-                </div>
-                <div class="row center">
-                    {% for skill in skills %}
-                        {% if skill.category == category %}
-                        <div class="center col s6 m6 l3" style="height: 25vh;">
-                            <a href="/projects?search={{ skill.tag }}"><img style="max-height: 80%; width: auto;" alt="{{ skill.title }}" src="{{ skill.image.url }}"></a>
+            <div class="row p-divider">
+                {% for category in categories %}
+                    <div class="col p-divider__block">
+                        <h2 class="p-heading--3">{{ category.title }}</h2>
+                        <div class="row">
+                            {% for skill in skills %}
+                                {% if skill.category == category %}
+                                    <div class="col-3" style="margin-bottom: 1.5rem;">
+                                        <a href="/projects?search={{ skill.tag }}"><img width="512" alt="{{ skill.title }}" src="{{ skill.image.url }}"></a>
+                                    </div>
+                                {%  endif %}
+                            {% endfor %}
                         </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
