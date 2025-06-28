@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}<title>Projects</title>{% endblock %}
+{% block includes %}<script src="{% static 'scripts/project_filter.js' %}"></script>{% endblock %}
 {% block content %}
     <div class="p-strip--dark">
         <div class="row">
@@ -35,7 +36,7 @@
                                             {% for skill in skills %}
                                                 {% if skill.category == category %}
                                                     <label class="p-checkbox">
-                                                        <input aria-labelledby=":rf:" class="p-checkbox__input" type="checkbox">
+                                                        <input id="check-{{ skill.tag }}" aria-labelledby=":rf:" class="p-checkbox__input" type="checkbox">
                                                         <span class="p-checkbox__label" id=":rf:">{{ skill.title }}</span>
                                                     </label>
                                                 {% endif %}

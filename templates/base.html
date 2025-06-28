@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-4.24.1.min.css" />
 
         <script src="{% static 'scripts/main.js' %}"></script>
+        {% block includes %}{% endblock %}
 	</head>
 	<body class="is-{{ theme }}">
         <div class="l-site">
