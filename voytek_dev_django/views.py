@@ -5,7 +5,7 @@ from projects.models import Project, Skill, SkillCategory
 from bread.bread import Bread
 
 
-def get_context(request):
+def get_context(request, theme="light", is_short=False):
     mobile = False
     if hasattr(request, 'META'):
         user_agent = request.META.get('HTTP_USER_AGENT', '')
@@ -17,7 +17,7 @@ def get_context(request):
 
     page = request.path
 
-    return {"mobile": mobile, "page": page}
+    return {"mobile": mobile, "page": page, "theme": theme, "is_short": is_short}
 
 
 def get_projects(request):
@@ -57,7 +57,8 @@ def get_bread_values(request):
 
 
 def index(request):
-    return render(request, 'index.html', context=get_context(request))
+    context = get_context(request, theme="dark", is_short=True)
+    return render(request, 'index.html', context=context)
 
 
 def resume(request):
