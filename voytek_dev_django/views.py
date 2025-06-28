@@ -71,7 +71,7 @@ def about(request):
 
 
 def projects(request):
-    context = get_context(request) | get_projects(request)
+    context = get_context(request) | get_projects(request) | get_skills(request) | get_skill_categories(request)
     return render(request, 'projects.html', context=context)
 
 

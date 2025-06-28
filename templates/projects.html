@@ -25,25 +25,25 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-3">
-                            <div class="p-filter-panel ">
-                                <div class="p-filter-panel__header">
+                            {% if skills and categories %}
+                                <div class="p-filter-panel ">
+                                    <div class="p-filter-panel__header">
+                                    </div>
+                                    {% for category in categories %}
+                                        <div class="p-filter-panel__inner">
+                                            <h2 class="p-muted-heading">{{ category.title }}</h2>
+                                            {% for skill in skills %}
+                                                {% if skill.category == category %}
+                                                    <label class="p-checkbox">
+                                                        <input aria-labelledby=":rf:" class="p-checkbox__input" type="checkbox">
+                                                        <span class="p-checkbox__label" id=":rf:">{{ skill.title }}</span>
+                                                    </label>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
                                 </div>
-                                <div class="p-filter-panel__inner">
-                                    <h2 class="p-muted-heading">Categories</h2>
-                                    <label class="p-checkbox">
-                                        <input aria-labelledby=":rf:" class="p-checkbox__input" type="checkbox">
-                                        <span class="p-checkbox__label" id=":rf:">Embedded</span>
-                                    </label>
-                                    <label class="p-checkbox">
-                                        <input aria-labelledby=":rg:" class="p-checkbox__input" type="checkbox">
-                                        <span class="p-checkbox__label" id=":rg:">Packaging</span>
-                                    </label>
-                                    <label class="p-checkbox">
-                                        <input aria-labelledby=":rh:" class="p-checkbox__input" type="checkbox">
-                                        <span class="p-checkbox__label" id=":rh:">Social</span>
-                                    </label>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
                         <div class="col-9">
                             <div class="row">
