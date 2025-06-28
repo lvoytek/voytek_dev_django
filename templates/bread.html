@@ -7,17 +7,24 @@
             <h1 class="p-heading--2">Lena's Cool Ciabatta</h1>
         </div>
     </div>
-            <div class="span-wrapper">
-                <span class="slice">Ingredients</span>
-            </div>
-            <div class="row center">
-                <form class="row center">
-                    Makes
+    <div class="p-strip">
+        <div class="row--25-75">
+            <h1 class="p-heading--2">Ingredients</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form class="row">
+                    <div class="col-2">
                     <input type="number" id="loaves" name="loaves" min="0" max="6" value="{{ bread.loaves }}" style="width: 30px;">
-                    loaves and
+                    loaves
+                    </div>
+                    <div class="col-2">
                     <input type="number" id="rolls" name="rolls" min="0" max="24" step="4" value="{{ bread.rolls }}" style="width: 40px;">
                     rolls.
+                    </div>
+                    <div class="col-2">
                     <button type="submit" class="waves-effect waves-light btn-small">Update</button>
+                    </div>
                 </form>
                 <ul>
                     <li>{{ bread.total_flour }}g Flour</li>
@@ -26,11 +33,13 @@
                     <li>{{ bread.salt }}g Salt</li>
                 </ul>
             </div>
-            <div class="span-wrapper">
-                <span class="slice">Directions</span>
-            </div>
-            <div class="row center">
-                <p class="flow-text">
+        </div>
+        <div class="row--25-75">
+            <h1 class="p-heading--2">Directions</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>
                     Start the process by creating a poolish:
                 </p>
                 <ul>
@@ -38,7 +47,7 @@
                     <li>Add <b>{{ bread.initial_water }}g of water</b>, stir to combine</li>
                     <li>Cover bowl and <b>wait 4 hours</b></li>
                 </ul>
-                <p class="flow-text">
+                <p>
                     Add the remaining ingredients:
                 </p>
                 <ul>
@@ -47,7 +56,7 @@
                     <li>Add <b>{{ bread.remaining_flour }}g of flour</b> in {{ bread.flour_increments }}g increments, mixing each time</li>
                     <li>Cover the dough ball in the bowl and <b>wait for 30 min</b></li>
                 </ul>
-                <p class="flow-text">
+                <p>
                     Now it's time to stretch and fold:
                 </p>
                 <ul>
@@ -57,7 +66,7 @@
                     <li>Cover the bowl and <b>wait for 30 min</b></li>
                     <li>Repeat the above steps three more times, <b>waiting 2 hours</b> after the final round</li>
                 </ul>
-                <p class="flow-text">
+                <p>
                     Prepare to wait:
                 </p>
                 <ul>
@@ -66,7 +75,7 @@
                     <li>Return the dough to the bowl, cover, and move to the fridge</li>
                     <li><b>Wait overnight</b> for the dough to rise again</li>
                 </ul>
-                <p class="flow-text">
+                <p>
                     Prepare to bake:
                 </p>
                 <ul>
@@ -87,4 +96,6 @@
                     <li>Cool for <b>20 min</b></li>
                 </ul>
             </div>
+        </div>
+    </div>
 {% endblock %}
