@@ -1,94 +1,51 @@
-/**
- * MIT License
- *
- * Copyright (c) 2020 Lena Voytek
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- * Document: main.js
- *
- * Overview: This document contains functions and scripts that can be run by
- * any webpage on the site.
- */
+// Open or close the nav dropdown on smaller screens
+function toggleDropdown(toggle, open) {
+  var parentElement = toggle.parentNode;
+  var dropdown = document.getElementById(toggle.getAttribute('aria-controls'));
+  dropdown.setAttribute('aria-hidden', !open);
 
-
-function setColorMode(dark) {
-  if (dark) {
-    $('link:eq(2)').attr('rel', "stylesheet");
-    $('link:eq(1)').attr('rel', "stylesheet alternate");
-  }
-  else {
-    $('link:eq(1)').attr('rel', "stylesheet");
-    $('link:eq(2)').attr('rel', "stylesheet alternate");
+  if (open) {
+    parentElement.classList.add('is-active');
+  } else {
+    parentElement.classList.remove('is-active');
   }
 }
 
-function getAdditionalSidenavItems() {
-  if (window.localStorage.getItem("authToken")) {
-    $.ajax({
-      url: '/additionalsidenavitems',
-      type: 'GET',
-      headers: { 'x-auth': window.localStorage.getItem("authToken") },
-      dataType: 'json'
-    })
-      .done(addlSidenavSuccess);
-  }
-}
-
-function addlSidenavSuccess(data, textSatus, jqXHR) {
-  $('#slide-out').append(data.html);
-  $("#proj-editor-link").click(function () {
-    $.ajax(
-      {
-        url: "/projects-editor",
-        beforeSend: function (xhr) { xhr.setRequestHeader('x-auth', window.localStorage.getItem("authToken")); },
-        type: "GET",
-        success: function (result) { window.document.write(result); }
-      });
+// Close all dropdown menus
+function closeAllDropdowns(toggles) {
+  toggles.forEach(function(toggle) {
+    toggleDropdown(toggle, false);
   });
 }
 
+// Close dropdown menu when clicking outside of it
+function handleClickOutside(toggles, containerClass) {
+  document.addEventListener('click', function(event) {
+    var target = event.target;
 
-$(document).ready(function () {
-  //Activate/disable dark mode
-  if (window.localStorage.getItem('darkModeOn') !== null) {
-    $("#darkmode:checkbox").prop("checked", window.localStorage.getItem('darkModeOn') === "true");
-    setColorMode(window.localStorage.getItem('darkModeOn') === "true");
-  }
-  else {
-    window.localStorage.setItem('darkModeOn', "true");
-  }
-
-  //Check for currently active page in navbar
-  $("#link-" + $("title").html()).addClass("active");
-
-  getAdditionalSidenavItems();
-
-  //Edit dark mode when checkbox toggled
-  $("#darkmode").change(function () {
-    if (this.checked) {
-      window.localStorage.setItem('darkModeOn', "true");
+    if (target.closest) {
+      if (!target.closest(containerClass)) {
+        closeAllDropdowns(toggles);
+      }
     }
-    else {
-      window.localStorage.setItem('darkModeOn', "false");
-    }
-
-    setColorMode(this.checked);
   });
-});
+}
+
+// Nav menu dropdown initialization
+function initNavDropdowns(containerClass) {
+  var toggles = [].slice.call(document.querySelectorAll(containerClass + ' [aria-controls]'));
+
+  handleClickOutside(toggles, containerClass);
+
+  toggles.forEach(function(toggle) {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const shouldOpen = !toggle.parentNode.classList.contains('is-active');
+      closeAllDropdowns(toggles);
+      toggleDropdown(toggle, shouldOpen);
+    });
+  });
+}
+
+initNavDropdowns('.p-navigation__item--dropdown-toggle')

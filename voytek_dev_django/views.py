@@ -1,10 +1,11 @@
 from django.shortcuts import render
+from django.db.utils import NotSupportedError
 from user_agents import parse
 from projects.models import Project, Skill, SkillCategory
 from bread.bread import Bread
 
 
-def get_context(request):
+def get_context(request, theme="light", is_short=False):
     mobile = False
     if hasattr(request, 'META'):
         user_agent = request.META.get('HTTP_USER_AGENT', '')
@@ -14,14 +15,20 @@ def get_context(request):
 
         mobile = parse(user_agent).is_mobile
 
-    return {"mobile": mobile}
+    page = request.path
+
+    return {"mobile": mobile, "page": page, "theme": theme, "is_short": is_short}
 
 
 def get_projects(request):
-    if request.GET.get("search", None) is not None:
-        return {"projects": sorted(list(Project.objects.filter(tags__contains=request.GET.get("search"))))}
+    search = request.GET.get("search", None)
+    if search is not None:
+        try:
+            return {"projects": sorted(list(Project.objects.filter(tags__contains=request.GET.get("search")))), "search": search}
+        except NotSupportedError:
+            return {"projects": sorted(list(Project.objects.all())), "search": search}
 
-    return {"projects": sorted(list(Project.objects.all()))}
+    return {"projects": sorted(list(Project.objects.all())), "search":"" }
 
 
 def get_skills(request):
@@ -50,7 +57,8 @@ def get_bread_values(request):
 
 
 def index(request):
-    return render(request, 'index.html', context=get_context(request))
+    context = get_context(request, theme="dark", is_short=True)
+    return render(request, 'index.html', context=context)
 
 
 def resume(request):
@@ -63,7 +71,7 @@ def about(request):
 
 
 def projects(request):
-    context = get_context(request) | get_projects(request)
+    context = get_context(request) | get_projects(request) | get_skills(request) | get_skill_categories(request)
     return render(request, 'projects.html', context=context)
 
 

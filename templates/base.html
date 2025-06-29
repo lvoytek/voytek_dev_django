@@ -10,80 +10,88 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Author: Lena Voytek, Category: Personal Website">
 
-        <!-- Import jQuery -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
         <link rel="icon" href="{% static 'images/logo.png' %}">
 
-        {% compress css %}
-            <link type="text/x-scss" href="{% static 'main.scss' %}" rel="stylesheet" media="screen">
-        {% endcompress %}
-
-        {% compress css %}
-            <link type="text/x-scss" href="{% static 'main-dark.scss' %}" rel="stylesheet" media="screen">
-        {% endcompress %}
-
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-        <script src="{% static 'materialize/dist/js/materialize.min.js' %}"></script>
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-4.24.1.min.css" />
 
         <script src="{% static 'scripts/main.js' %}"></script>
+        {% block includes %}{% endblock %}
 	</head>
-	<body>
-        {% if mobile %}
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="{% static 'images/logo.png' %}" alt="LV logo"
-                            style="height: 85%;"></a>
-                    <ul class="right ">
-                        <li><a href="#" data-target="slide-out" style="display: block;" class="sidenav-trigger"><i
-                                    class="material-icons">menu</i></a></li>
-                    </ul>
+	<body class="is-{{ theme }}">
+        <div class="l-site">
+            <header id="navigation" class="p-navigation is-dark">
+                <div class="p-navigation__row--25-75">
+                    <div class="p-navigation__banner">
+                        <div class="p-navigation__tagged-logo">
+                            <a class="p-navigation__link" href="/">
+                                <div class="p-navigation__logo-tag" style="background: #76658b">
+                                    <img class="p-navigation__logo-icon" src="{% static 'images/logo.png' %}" alt="LV">
+                                </div>
+                                <span class="p-navigation__logo-title">Lena Voytek</span>
+                            </a>
+                        </div>
+                        <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
+                        <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Close menu</a>
+                    </div>
+                    <nav class="p-navigation__nav" aria-label="lena">
+                        <ul class="p-navigation__items">
+                            <li class="p-navigation__item {% if page == "/" %} is-selected {% endif %}">
+                                <a class="p-navigation__link" href="/">Home</a>
+                            </li>
+                            <li class="p-navigation__item {% if page == "/projects" %} is-selected {% endif %}">
+                                <a class="p-navigation__link" href="/projects">Projects</a>
+                            </li>
+                            <li class="p-navigation__item {% if page == "/resume" %} is-selected {% endif %}">
+                                <a class="p-navigation__link" href="/resume">Resume</a>
+                            </li>
+                            <li class="p-navigation__item {% if page == "/about" %} is-selected {% endif %}">
+                                <a class="p-navigation__link" href="/about">About</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </nav>
+            </header>
 
-            <ul id="slide-out" class="sidenav">
-                <li>
-                    <div class="divider"></div>
-                </li>
-                <li><a class="subheader">Navigation</a></li>
-                {% block mobilepages %}{% endblock %}
-                {% block mobilesettings %}{% endblock %}
-            </ul>
-        {% else %}
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="/" class="brand-logo left" style="height: 100%;"><img id="logo" src="{% static 'images/logo.png' %}" alt="LV logo"
-                            style="height: 85%;"></a>
-                    <ul class="right ">
-                        {% block desktoppages %}{% endblock %}
-                        <li><a href="#" data-target="slide-out" style="display: block;" class="sidenav-trigger"><i
-                                    class="material-icons">settings</i></a></li>
-                    </ul>
+            <main id="main-content" class="inner-wrapper">
+                {% block content %}{% endblock %}
+            </main>
+
+            <footer class="l-footer--sticky p-strip--highlighted is-dark">
+                <div class="row">
+                    <div class="col-9">
+                        <p>
+                            {% if not is_short %}
+                                <a class="p-link--inverted" href="#">Back to top <i class="p-icon--chevron-up is-light"></i></a>
+                            {% endif %}
+                        </p>
+                        <p>
+                            © 2025 Lena Voytek <br>
+                            Powered by <a href="https://www.djangoproject.com/">Django</a> and <a href="https://vanillaframework.io/">Vanilla Framework</a>
+                        </p>
+                    </div>
+                    <div class="col-3">
+                        <ul class="p-inline-list u-align--right">
+                            <li class="p-inline-list__item">
+                                <a href="mailto:lena@voytek.dev" class="p-icon--email">Email</a>
+                            </li>
+                            <li class="p-inline-list__item">
+                                <a href="https://github.com/lvoytek" class="p-icon--github">GitHub</a>
+                            </li>
+                            <li class="p-inline-list__item">
+                                <a href="https://www.linkedin.com/in/lenascript/" class="p-icon--linkedin">Linkedin</a>
+                            </li>
+                            <li class="p-inline-list__item">
+                                <a href="https://launchpad.net/~lvoytek" class="p-icon--launchpad"><img
+                                    src="https://launchpadlibrarian.net/600817174/Canonical_Launchpad_icon_64px.png" alt="Launchpad" width="24"
+                                    height="24"></a>
+                            </li>
+                            <li class="p-inline-list__item">
+                                <a href="https://www.instagram.com/ok.thisislena/" class="p-icon--instagram">Instagram</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </nav>
-
-            <ul id="slide-out" class="sidenav">
-                {% block desktopsettings %}{% endblock %}
-            </ul>
-        {% endif %}
-
-        {% block content %}{% endblock %}
-
-        {% block social %}{% endblock %}
+            </footer>
+        </div>
 	</body>
-	<script>
-	//Initialize sidenav
-	    $('.sidenav').sidenav({
-		    'edge': 'right'
-	    });
-
-	    if(window.localStorage.getItem('authToken'))
-		    $(".unregistered-button").hide();
-	    else
-		    $(".registered-button").hide();
-    </script>
 </html>
