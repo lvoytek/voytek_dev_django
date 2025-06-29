@@ -11,8 +11,6 @@ setup(
     description='voytek.dev created with Django',
     install_requires=[
         'django',
-        'django-compressor',
-        'django-libsass',
-        'user_agents'
+        'django-compressor'
     ],
 )

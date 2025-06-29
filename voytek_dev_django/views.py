@@ -1,23 +1,13 @@
 from django.shortcuts import render
 from django.db.utils import NotSupportedError
-from user_agents import parse
 from projects.models import Project, Skill, SkillCategory
 from bread.bread import Bread
 
 
 def get_context(request, theme="light", is_short=False):
-    mobile = False
-    if hasattr(request, 'META'):
-        user_agent = request.META.get('HTTP_USER_AGENT', '')
-
-        if not isinstance(user_agent, str):
-            user_agent = user_agent.decode('utf-8', 'ignore')
-
-        mobile = parse(user_agent).is_mobile
-
     page = request.path
 
-    return {"mobile": mobile, "page": page, "theme": theme, "is_short": is_short}
+    return {"page": page, "theme": theme, "is_short": is_short}
 
 
 def get_projects(request):
