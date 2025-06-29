@@ -6,4 +6,6 @@ Powered by Django and Vanilla Framework
 - Python 3.8+
 - Django 3.2+
 - MySQL (for production) or SQLite (for development)
-- django-compressor
+- python3-django-compressor
+- python3-mysqldb
+- python3-pillow
